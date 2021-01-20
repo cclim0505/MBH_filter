@@ -18,8 +18,13 @@
       REAl(KIND=8),DIMENSION(:,:),ALLOCATABLE :: coord
 
       PRINT *,"---------------------------------------------"
-      PRINT *," You are running structural filter           "
+      PRINT *,"     You are running structural filter       "
+      PRINT *,"            Part 1 of 3                      "
+      PRINT *,"            Version 1.0                      "
+      PRINT *,"            20-01-2021                       "
       PRINT *,"---------------------------------------------"
+      PRINT *,""
+      PRINT *,""
 
       CALL GET_COMMAND_ARGUMENT(1,file_in)
       CALL GET_COMMAND_ARGUMENT(2,max_val)
@@ -85,5 +90,10 @@
       PRINT '("Filter ratio is: " )'
       PRINT '(I6," / " I6)', counter, read_in
       PRINT '(F8.4)', REAL(counter)/REAL(read_in)
+      PRINT *, ''
+      PRINT *, ''
+      PRINT *, 'Check output file:'
+      PRINT *, file_out
+      PRINT *, ''
 
       END PROGRAM main

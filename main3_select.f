@@ -19,8 +19,13 @@
 
 
       PRINT *,"---------------------------------------------"
-      PRINT *," You are running structural selection        "
+      PRINT *,"   You are running structural selection      "
+      PRINT *,"            Part 3 of 3                      "
+      PRINT *,"            Version 1.0                      "
+      PRINT *,"            20-01-2021                       "
       PRINT *,"---------------------------------------------"
+      PRINT *,""
+      PRINT *,""
 
       CALL GET_COMMAND_ARGUMENT(1,xyz_file)
       CALL GET_COMMAND_ARGUMENT(2,select_num_file)
@@ -66,13 +71,14 @@
       OPEN(NEWUNIT=f_num,FILE=select_num_file,STATUS='OLD')
       DO iter=1, SIZE(select_num)
         READ(f_num,*) select_num(iter)
+        select_num(iter) = select_num(iter) + 1 ! account zero based
       END DO
       CLOSE(f_num)
 
       PRINT *, ""
       PRINT *, "Selection list values are:"
       DO iter=1,counter
-        PRINT *, select_num(iter)
+        PRINT *, select_num(iter)-1
       END DO
       PRINT *, ""
 
@@ -110,13 +116,18 @@
 ! Output selected coordinates
       OPEN(NEWUNIT=f_selected, FILE=selected_file, ACCESS='append')
       write_loop: DO iter=1,counter
-        selection = select_num(iter)
-        WRITE(f_selected,*) natoms, "selection:", selection
+        selection = select_num(iter)  
+        WRITE(f_selected,*) natoms, "selection:", selection-1 ! output zero-based number
         WRITE(f_selected,*) energy(selection), "index:", iter-1
         DO jter=1, natoms
           WRITE(f_selected,*) material, coord(selection,jter,1)
      &      ,coord(selection,jter,2), coord(selection,jter,3)
         END DO
       END DO write_loop
+
+      PRINT *, ''
+      PRINT *, 'Selected structures are in output file:'
+      PRINT *, selected_file
+      PRINT *, ''
 
       END PROGRAM main

@@ -17,8 +17,13 @@
       REAL(KIND=8)  :: ene
 
       PRINT *,"---------------------------------------------"
-      PRINT *," You are running structural sort             "
+      PRINT *,"    You are running structural sort          "
+      PRINT *,"            Part 2 of 3                      "
+      PRINT *,"            Version 1.0                      "
+      PRINT *,"            20-01-2021                       "
       PRINT *,"---------------------------------------------"
+      PRINT *,""
+      PRINT *,""
 
       CALL GET_COMMAND_ARGUMENT(1,sort_num_file)
       CALL GET_COMMAND_ARGUMENT(2,xyz_file)
