@@ -58,9 +58,8 @@ mv "sorted_"$fil_out $output_xyz    # rename output
 
 
 
-
 # Script to calculate relative energies wrt to the lowest
-grep -iv $material $output_xyz | grep -vE "$natoms$" > $sorted_ene
+grep -iv $material $output_xyz | sed -n 2~2p > $sorted_ene
 
 lowest=$(sed -n 1p $sorted_ene)
 
